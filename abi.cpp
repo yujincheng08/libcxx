@@ -43,8 +43,9 @@ _LIBCPP_BEGIN_NAMESPACE_STD
 [[noreturn]] void terminate() noexcept { ::abort(); }
 [[noreturn]] void __throw_runtime_error(const char*) { ::abort(); }
 [[noreturn]] void __throw_system_error(int, const char*) { ::abort(); }
+void __libcpp_verbose_abort(const char*, ...) _NOEXCEPT { ::abort(); }
 
-#ifndef _LIBCPP_HAS_TRIVIAL_MUTEX_DESTRUCTION
+#if !_LIBCPP_HAS_TRIVIAL_MUTEX_DESTRUCTION
 mutex::~mutex() _NOEXCEPT { __libcpp_mutex_destroy(&__m_); }
 #endif
 
